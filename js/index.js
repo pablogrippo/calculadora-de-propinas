@@ -1,4 +1,9 @@
-alert("Esta es mi aplicacion para calcular propinas")
+const usuario = {
+    nombre: prompt("Cual es su nombre?"),
+    apellido: prompt("Cual es su apellido")
+}
+
+alert("Bienvenido " + usuario.nombre + " " + usuario.apellido)
 
 // Funcion para calcular la propina
 function calcularPropina() {
