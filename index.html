@@ -12,25 +12,37 @@
 
     <div class="contenido">
 
-        Importe a pagar ($)
-        <input type="text" id="box1"><br>
+        <form id="miFormulario">
 
-        ¿Cuanta propina quiere dejar?
-        <input type="text" id="box2">% <br>
+            Su nombre
+            <input type="text" id="nombre"><br>
 
-        Dividir la propina entre
-        <input type="text" id="box3">personas <br><br>
+            Su apellido
+            <input type="text" id="apellido"><br>
 
-        <button type="button" id="btn_calcular">Calcular Propina</button>
+            Importe a pagar ($)
+            <input type="text" id="box1"><br>
+
+            ¿Cuanta propina quiere dejar?
+            <input type="text" id="box2"> % <br>
+
+            Dividir la propina entre
+            <input type="text" id="box3"> personas <br><br>
+
+            <button type="submit" id="btn_calcular">Calcular Propina</button>
+
+        </form>
 
         <hr>
         <h2>----- Resultado -----</h2>
 
-        <div>Total de la propina</div><span>$</span>
-        <span id="r1"></span>
+        <span id="saludo"></span>
 
-        <div>Cada persona debe poner:</div><span>$</span>
-        <span id="r2"></span>
+        <div>Total de la propina</div>
+        <span>$</span><span id="r1"></span>
+
+        <div>Cada persona debe poner:</div>
+        <span>$</span><span id="r2"></span>
         <span id="r3"></span>
     </div>
 

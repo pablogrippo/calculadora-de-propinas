@@ -1,34 +1,46 @@
-const usuario = {
-    nombre: prompt("Cual es su nombre?"),
-    apellido: prompt("Cual es su apellido")
-}
+const calculadoraDePropinas = document.getElementById("miFormulario");
 
-alert("Bienvenido " + usuario.nombre + " " + usuario.apellido)
+//Funcion para calcular la propina
+calculadoraDePropinas.addEventListener("submit", (event) => {
 
-// Funcion para calcular la propina
-function calcularPropina() {
+    event.preventDefault();
+    class Persona {
+
+        constructor(nombre,apellido) {
+            this.nombre = nombre.toUpperCase();
+            this.apellido = apellido.toUpperCase();
+        }
     
-    // Recopilar datos del usuario
-    let totalCompra = parseInt(prompt("Ingrese el importe total a pagar"))
-    let porcentajePropina = parseInt(prompt("Ingrese el porcentaje de la propina"))
-    let totalPersonas = parseInt(prompt("Ingrese el total de personas"))
+        saludar() {
+            if (this.nombre == "" && this.apellido == "") {
+                document.getElementById('saludo').innerHTML = "";
+            } else {
+                document.getElementById('saludo').innerHTML = `HOLA  ${this.nombre}  ${this.apellido}`;
+            }
+        }
+    }
 
-    // Formulas
-    const porcentaje = porcentajePropina / 100
-    const propinaTotal = totalCompra * porcentaje
-    const propinaPorPersona = propinaTotal / totalPersonas
+    const NombreYApellido = new Persona(document.getElementById('nombre').value, document.getElementById('apellido').value);
+    NombreYApellido.saludar();
 
-    if (!totalCompra) {
-        console.log("No ingreso ningun dato")
+    //Obtener datos
+    let totalCompra = document.getElementById('box1').value;
+    let porcentajePropina = document.getElementById('box2').value;
+    let totalPersonas = document.getElementById('box3').value;
+
+    //Formulas
+    const porcentaje = porcentajePropina / 100;
+    const resultado1 = totalCompra * porcentaje;
+    const resultado2 = resultado1 / totalPersonas;
+    
+    if (totalCompra == "") {
+        document.getElementById('r3').innerHTML = "INTRODUZCA TODOS LOS DATOS";
+        document.getElementById('r1').innerHTML = ":(";
+        document.getElementById('r2').innerHTML = ":(";
     } else {
-        console.log("El total de la propina es: $ " + propinaTotal.toFixed(2) + " y la propina por persona es de: $ " + propinaPorPersona.toFixed(2))
+        //Respuestas
+        document.getElementById('r1').innerHTML = resultado1.toFixed(2);
+        document.getElementById('r2').innerHTML = resultado2.toFixed(2);
     }
 
-    while(porcentaje != "") {
-        console.log("El porcentaje ingresado es de: " + porcentaje.toFixed(2) + "%")   
-        break
-    }
-
-}
-
-calcularPropina()
+});
