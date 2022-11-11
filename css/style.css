@@ -28,6 +28,17 @@ h2 {
     flex-direction: column;
 }
 
+.copyright {
+    display: flex;
+    justify-content: center;
+    margin: 5px;
+}
+
+.copyright a {
+    color: #EEEBD3;
+    text-decoration: none;
+}
+
 #nombre,
 #apellido,
 #box1,
