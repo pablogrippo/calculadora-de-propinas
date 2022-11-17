@@ -1,29 +1,31 @@
 // Guardo mi formulario en una constante
 const calculadoraDePropinas = document.getElementById("miFormulario");
 
+// Creando una clase Persona. 
+class Persona {
+
+    constructor(nombre,apellido) {
+        this.nombre = nombre.toUpperCase();
+        this.apellido = apellido.toUpperCase();
+    }
+
+    // Funcion para mostrar en pantalla el nombre y apellido del usuario. 
+    saludar() {
+        if (this.nombre === "" && this.apellido === "") {
+            document.getElementById('saludo').innerHTML = "";
+        } else {
+            document.getElementById('saludo').innerHTML = `HOLA  ${this.nombre}  ${this.apellido}`;
+        }
+    }
+}
+
 //Funcion para calcular la propina
 calculadoraDePropinas.addEventListener("submit", (event) => {
 
     event.preventDefault();
-    class Persona {
 
-        constructor(nombre,apellido) {
-            this.nombre = nombre.toUpperCase();
-            this.apellido = apellido.toUpperCase();
-        }
-
-        // Funcion para mostrar en pantalla el nombre y apellido del usuario. 
-        saludar() {
-            if (this.nombre == "" && this.apellido == "") {
-                document.getElementById('saludo').innerHTML = "";
-            } else {
-                document.getElementById('saludo').innerHTML = `HOLA  ${this.nombre}  ${this.apellido}`;
-            }
-        }
-    }
-
-    const NombreYApellido = new Persona(document.getElementById('nombre').value, document.getElementById('apellido').value);
-    NombreYApellido.saludar();
+    const nombreYApellido = new Persona(document.getElementById('nombre').value, document.getElementById('apellido').value);
+    nombreYApellido.saludar();
 
     //Obtener datos
     let totalCompra = document.getElementById('box1').value;
@@ -36,22 +38,27 @@ calculadoraDePropinas.addEventListener("submit", (event) => {
     const resultado2 = resultado1 / totalPersonas;
 
     // Uso de localStorage para guardar el calculo de propina en el navegador. 
-    localStorage.setItem("calculoPropina", resultado1);
-    totalPropina = JSON.parse(localStorage.getItem("calculoPropina"));
-    
-    if (totalCompra == "") {
+    localStorage.setItem("calculoPropina", porcentaje);
+    calculoUltimaPropina = JSON.parse(localStorage.getItem("calculoPropina"));
+
+    if (totalCompra === "") {
         document.getElementById('r3').innerHTML = "INTRODUZCA TODOS LOS DATOS";
         document.getElementById('r1').innerHTML = ":(";
         document.getElementById('r2').innerHTML = ":(";
     } else {
-        //Respuestas
-        document.getElementById('r1').innerHTML = totalPropina.toFixed(2);
+        //Resultados.
+        document.getElementById('r1').innerHTML = resultado1.toFixed(2); 
         document.getElementById('r2').innerHTML = resultado2.toFixed(2);
+        document.getElementById('r4').innerHTML = calculoUltimaPropina.toFixed(2) + "%"; // Mostrar la última propina por pantalla. 
     }
 });
 
-// Utilización de la libreria Luxon para mostrar el año en el cual fue creada esta app. 
-const DateTime = luxon.DateTime;
-const hoy = DateTime.now();
+// Utilización de la libreria Luxon. 
+const dateTime = luxon.DateTime;
+const hoy = dateTime.now();
 
-document.getElementById('anio').innerHTML = hoy.year;
+// Uso de Asincronía para mostrar el año en el cual fue creada esta app. 
+setTimeout( () => {
+    document.getElementById('anio').innerHTML = hoy.year;
+}, 500)
+
