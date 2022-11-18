@@ -39,6 +39,10 @@ h2 {
     text-decoration: none;
 }
 
+#contenedor {
+    text-align: center;
+}
+
 #nombre,
 #apellido,
 #box1,
